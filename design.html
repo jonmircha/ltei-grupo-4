@@ -1,0 +1,1892 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sistema de diseño — jonmircha</title>
+<meta name="description" content="Referencia visual del sistema de diseño de jonmircha: colores, tipografía, espaciado, formas y componentes, construida con los tokens de DESIGN.md.">
+<meta name="theme-color" content="#FCFCFC">
+<link rel="icon" href="assets/img/favicon.png" type="image/png">
+<link rel="preload" href="assets/fonts/pt-sans-regular.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/pt-sans-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/raleway-variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/roboto-mono-regular.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+/* ============================================================
+   1. Fuentes del proyecto
+   ============================================================ */
+@font-face{
+  font-family:"PT Sans";
+  src:url("assets/fonts/pt-sans-regular.woff2") format("woff2");
+  font-weight:400;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"PT Sans";
+  src:url("assets/fonts/pt-sans-bold.woff2") format("woff2");
+  font-weight:700;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"PT Sans";
+  src:url("assets/fonts/pt-sans-italic.woff2") format("woff2");
+  font-weight:400;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:"PT Sans";
+  src:url("assets/fonts/pt-sans-bold-italic.woff2") format("woff2");
+  font-weight:700;font-style:italic;font-display:swap;
+}
+@font-face{
+  font-family:"Raleway";
+  src:url("assets/fonts/raleway-variable.woff2") format("woff2");
+  font-weight:100 900;font-style:normal;font-display:swap;
+}
+@font-face{
+  font-family:"Roboto Mono";
+  src:url("assets/fonts/roboto-mono-regular.woff2") format("woff2");
+  font-weight:400;font-style:normal;font-display:swap;
+}
+
+/* ============================================================
+   2. Tokens — valores exactos de DESIGN.md
+   ============================================================ */
+:root{
+  color-scheme:light;
+
+  /* colors */
+  --c-primary:#E7562E;
+  --c-primary-strong:#D0440F;
+  --c-primary-hover:#C63C0A;
+  --c-primary-active:#A83208;
+  --c-secondary:#E7762E;
+  --c-link:#0088CC;
+  --c-accent-cyan:#73CFFA;
+  --c-surface:#FCFCFC;
+  --c-surface-alt:#F7F7F7;
+  --c-surface-muted:#EEEEEE;
+  --c-white:#FFFFFF;
+  --c-on-surface:#202225;
+  --c-on-surface-muted:#808080;
+  --c-on-primary:#FFFFFF;
+  --c-charcoal:#2B3A42;
+  --c-charcoal-mid:#20252C;
+  --c-charcoal-deep:#202B38;
+  --c-on-dark:#F7F7F7;
+  --c-on-dark-muted:#A9B2BA;
+  --c-disabled-bg:#CCCCCC;
+  --c-disabled-text:#555555;
+  --c-overlay:rgba(0,0,0,.5);
+
+  /* typography */
+  --f-sans:"PT Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --f-display:"Raleway","PT Sans",-apple-system,sans-serif;
+  --f-mono:"Roboto Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  /* spacing */
+  --s-xs:4px;   --s-sm:8px;   --s-md:12px;  --s-lg:16px;
+  --s-xl:24px;  --s-2xl:32px; --s-3xl:40px; --s-4xl:48px;
+  --s-5xl:92px; --s-6xl:136px;
+  --gutter-mobile:12px;
+  --gutter:48px;
+  --container:1440px;
+
+  /* rounded */
+  --r-none:0px; --r-sm:8px; --r-md:16px; --r-pill:50px; --r-full:9999px;
+
+  /* elevation */
+  --sh-1:0 2px 4px rgba(0,0,0,.08);
+  --sh-2:0 4px 12px rgba(0,0,0,.12);
+  --sh-3:0 8px 24px rgba(0,0,0,.16);
+
+  /* semantic layer */
+  --bg:var(--c-surface);
+  --bg-alt:var(--c-surface-alt);
+  --bg-muted:var(--c-surface-muted);
+  --card:var(--c-white);
+  --fg:var(--c-on-surface);
+  --fg-muted:#6B6B6B;      /* gris de lectura: #808080 no alcanza AA */
+  --fg-faint:var(--c-on-surface-muted);
+  --border:var(--c-surface-muted);
+  --accent:var(--c-primary);
+  --accent-strong:var(--c-primary-strong);
+  --accent-text:var(--c-primary-hover);
+  --link:#0077B3;          /* ajuste accesible del azul de enlace #0088CC */
+  --focus:var(--c-primary-strong);
+  --header-bg:rgba(252,252,252,.88);
+}
+
+[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:var(--c-charcoal-deep);
+  --bg-alt:var(--c-charcoal-mid);
+  --bg-muted:var(--c-charcoal);
+  --card:var(--c-charcoal-mid);
+  --fg:var(--c-on-dark);
+  --fg-muted:var(--c-on-dark-muted);
+  --fg-faint:var(--c-on-dark-muted);
+  --border:var(--c-charcoal);
+  --link:var(--c-accent-cyan);
+  --focus:var(--c-accent-cyan);
+  --accent-text:var(--c-on-dark-muted);
+  --header-bg:rgba(32,43,56,.88);
+}
+
+/* ============================================================
+   3. Reset y base
+   ============================================================ */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth}
+}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--fg);
+  font:400 20px/30px var(--f-sans);
+  -webkit-font-smoothing:antialiased;
+  transition:background-color .2s ease,color .2s ease;
+}
+img,svg{display:block;max-width:100%}
+h1,h2,h3,h4,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{
+  outline:3px solid var(--focus);
+  outline-offset:2px;
+  border-radius:2px;
+}
+::selection{background:var(--c-primary);color:#fff}
+
+/* escalas tipográficas del sistema */
+.t-display{font:900 40px/48px var(--f-display);letter-spacing:-.01em}
+.t-h1{font:700 40px/48px var(--f-sans)}
+.t-h2{font:900 40px/48px var(--f-display)}
+.t-h3{font:700 16px/24px var(--f-sans)}
+.t-body{font:400 20px/30px var(--f-sans)}
+.t-list{font:400 20px/30px var(--f-display)}
+.t-nav{font:400 20px/30px var(--f-sans)}
+.t-link{font:400 20px/30px var(--f-sans)}
+.t-small{font:400 16px/24px var(--f-display)}
+.t-button{font:500 19.216px/24px var(--f-display)}
+.t-label{font:700 16px/24px var(--f-sans)}
+.t-chip{font:500 13px/16px var(--f-display)}
+.t-meta{font:400 16px/24px var(--f-mono)}
+
+.mono{font-family:var(--f-mono)}
+.eyebrow{
+  font:400 13px/16px var(--f-mono);
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--fg-muted);
+}
+.muted{color:var(--fg-muted)}
+.accent{color:var(--accent)}
+.visually-hidden{
+  position:absolute;width:1px;height:1px;padding:0;margin:-1px;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
+}
+.skip-link{
+  position:absolute;left:16px;top:-100px;z-index:100;
+  background:var(--c-primary-strong);color:#fff;
+  padding:12px 20px;border-radius:0;
+  font:500 16px/24px var(--f-sans);text-decoration:none;
+  transition:top .15s ease;
+}
+.skip-link:focus{top:12px}
+
+/* ============================================================
+   4. Cabecera
+   ============================================================ */
+.site-header{
+  position:sticky;top:0;z-index:50;
+  height:64px;
+  background:var(--header-bg);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.header-inner{
+  max-width:var(--container);
+  height:100%;margin:0 auto;
+  padding:0 clamp(16px,3vw,24px);
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.brand{
+  display:inline-flex;align-items:center;gap:10px;
+  text-decoration:none;white-space:nowrap;
+}
+.brand img{width:18px;height:24px;flex:none}
+.brand-name{
+  font:900 19px/1 var(--f-display);
+  letter-spacing:-.01em;
+}
+.brand-dot{color:var(--accent)}
+.brand-suffix{color:var(--fg-muted);font-weight:500}
+.header-actions{display:flex;align-items:center;gap:8px}
+.icon-btn{
+  width:40px;height:40px;
+  display:inline-grid;place-items:center;
+  background:transparent;border:1px solid var(--border);border-radius:var(--r-sm);
+  color:var(--fg);cursor:pointer;
+  transition:background-color .15s ease,border-color .15s ease;
+}
+.icon-btn:hover{background:var(--bg-muted);border-color:var(--fg-faint)}
+#theme-toggle .icon-sun,
+#theme-toggle .icon-moon{grid-area:1/1}
+[data-theme="light"] #theme-toggle .icon-sun{display:none}
+[data-theme="dark"] #theme-toggle .icon-moon{display:none}
+.menu-btn{display:none}
+
+.mobile-nav{
+  position:fixed;inset:64px 0 auto 0;z-index:49;
+  background:var(--bg);
+  border-bottom:1px solid var(--border);
+  padding:8px 16px 20px;
+  box-shadow:var(--sh-2);
+}
+.mobile-nav[hidden]{display:none}
+.mobile-nav a{
+  display:flex;align-items:center;gap:12px;
+  padding:12px 8px;
+  text-decoration:none;
+  border-bottom:1px solid var(--border);
+  font:400 20px/30px var(--f-sans);
+}
+.mobile-nav a:last-child{border-bottom:0}
+.mobile-nav .num{font:400 13px/16px var(--f-mono);color:var(--fg-muted)}
+
+/* ============================================================
+   5. Estructura: barra lateral + contenido
+   ============================================================ */
+.layout{
+  display:grid;
+  grid-template-columns:248px minmax(0,1fr);
+  max-width:var(--container);
+  margin:0 auto;
+  align-items:start;
+}
+.sidebar{
+  position:sticky;top:64px;
+  height:calc(100dvh - 64px);
+  overflow-y:auto;
+  border-right:1px solid var(--border);
+  padding:32px 16px 24px;
+  display:flex;flex-direction:column;gap:24px;
+}
+.sidebar-label{
+  font:400 13px/16px var(--f-mono);
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--fg-muted);
+  padding:0 8px;
+}
+.sidebar-nav{display:flex;flex-direction:column;gap:2px}
+.sidebar-nav a{
+  display:flex;align-items:baseline;gap:10px;
+  padding:8px;
+  text-decoration:none;
+  color:var(--fg-muted);
+  font:400 16px/24px var(--f-sans);
+  border-left:2px solid transparent;
+  transition:color .15s ease,border-color .15s ease,background-color .15s ease;
+}
+.sidebar-nav a .num{
+  font:400 13px/16px var(--f-mono);
+  color:var(--fg-faint);
+  min-width:20px;
+}
+.sidebar-nav a:hover{color:var(--fg);background:var(--bg-alt)}
+.sidebar-nav a[aria-current="true"]{
+  color:var(--accent-text);
+  border-left-color:var(--accent);
+  background:var(--bg-alt);
+}
+.sidebar-foot{
+  margin-top:auto;
+  padding:16px 8px 0;
+  border-top:1px solid var(--border);
+  font:400 13px/20px var(--f-mono);
+  color:var(--fg-muted);
+}
+.sidebar-foot a{color:var(--link);text-decoration:none}
+.sidebar-foot a:hover{text-decoration:underline}
+
+.main{min-width:0;padding-bottom:var(--s-5xl)}
+
+/* ============================================================
+   6. Secciones
+   ============================================================ */
+.section{
+  padding:var(--s-5xl) clamp(16px,4vw,48px);
+  border-bottom:1px solid var(--border);
+  scroll-margin-top:64px;
+}
+.section:last-of-type{border-bottom:0}
+.section-head{
+  display:grid;grid-template-columns:56px minmax(0,1fr);gap:0 16px;
+  margin-bottom:var(--s-4xl);
+}
+.section-index{
+  font:400 13px/16px var(--f-mono);
+  letter-spacing:.1em;
+  color:var(--accent-text);
+  padding-top:10px;
+}
+.section-title{
+  font:900 40px/48px var(--f-display);
+  letter-spacing:-.02em;
+}
+.section-desc{
+  grid-column:2;
+  margin-top:12px;
+  max-width:64ch;
+  color:var(--fg-muted);
+  font:400 20px/30px var(--f-sans);
+}
+.subhead{
+  font:700 16px/24px var(--f-sans);
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  margin-bottom:16px;
+}
+.block + .block{margin-top:var(--s-4xl)}
+
+/* ============================================================
+   7. Portada
+   ============================================================ */
+.hero{
+  padding:var(--s-5xl) clamp(16px,4vw,48px);
+  border-bottom:1px solid var(--border);
+  display:grid;
+  grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+  gap:clamp(32px,5vw,64px);
+  align-items:center;
+}
+.hero-copy{display:flex;flex-direction:column;align-items:flex-start;gap:24px}
+.hero h1{
+  font:900 clamp(30px,4.4vw,40px)/1.15 var(--f-display);
+  letter-spacing:-.02em;
+  text-wrap:balance;
+  max-width:18ch;
+}
+.hero h1 em{
+  font-style:normal;
+  color:var(--accent);
+}
+.hero-lead{
+  max-width:54ch;
+  color:var(--fg-muted);
+  font:400 20px/30px var(--f-sans);
+  text-wrap:pretty;
+}
+.hero-meta{
+  display:flex;flex-wrap:wrap;gap:8px 16px;
+  font:400 13px/16px var(--f-mono);
+  color:var(--fg-muted);
+}
+.hero-meta span{display:inline-flex;align-items:center;gap:8px}
+.hero-meta span::before{content:"";width:4px;height:4px;background:var(--accent);border-radius:50%}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+
+.specimen{
+  border:1px solid var(--border);
+  background:var(--card);
+  padding:var(--s-2xl);
+  display:flex;flex-direction:column;gap:var(--s-xl);
+  justify-content:space-between;
+  min-height:320px;
+}
+.specimen-top{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.specimen-aa{
+  font:900 96px/0.86 var(--f-display);
+  letter-spacing:-.05em;
+  color:var(--fg);
+}
+.specimen-tag{
+  font:400 13px/16px var(--f-mono);
+  color:var(--fg-muted);
+  text-align:right;
+  line-height:20px;
+}
+.specimen-dots{display:flex;gap:8px}
+.specimen-dots span{
+  width:28px;height:28px;border-radius:50%;
+  border:1px solid rgba(0,0,0,.08);
+}
+.specimen-foot{
+  display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
+  border-top:1px solid var(--border);
+  padding-top:16px;
+}
+.specimen-foot p{font:400 13px/20px var(--f-mono);color:var(--fg-muted)}
+.specimen-foot strong{display:block;font:900 19px/24px var(--f-display);color:var(--fg)}
+
+/* ============================================================
+   8. Muestras de color
+   ============================================================ */
+.swatch-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(196px,1fr));
+  gap:16px;
+}
+.swatch{
+  display:flex;flex-direction:column;text-align:left;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:0;padding:0;
+  cursor:pointer;overflow:hidden;
+  transition:box-shadow .15s ease,transform .15s ease;
+}
+.swatch:hover{box-shadow:var(--sh-1)}
+.swatch:active{transform:scale(.995)}
+.swatch-chip{
+  height:88px;
+  border-bottom:1px solid var(--border);
+  background-color:var(--sw);
+}
+.swatch-chip.is-alpha{
+  background-image:
+    linear-gradient(45deg,var(--bg-muted) 25%,transparent 25%,transparent 75%,var(--bg-muted) 75%),
+    linear-gradient(45deg,var(--bg-muted) 25%,transparent 25%,transparent 75%,var(--bg-muted) 75%);
+  background-size:16px 16px;
+  background-position:0 0,8px 8px;
+}
+.swatch-chip.is-alpha::after{
+  content:"";display:block;height:100%;background:var(--sw);
+}
+.swatch-body{padding:12px;display:flex;flex-direction:column;gap:2px}
+.swatch-token{font:400 13px/18px var(--f-mono);color:var(--fg-muted);overflow-wrap:anywhere}
+.swatch-hex{font:700 16px/24px var(--f-sans);letter-spacing:.01em}
+.swatch-role{font:400 13px/18px var(--f-sans);color:var(--fg-muted)}
+
+/* ============================================================
+   9. Tablas de datos
+   ============================================================ */
+.table-wrap{overflow-x:auto;border:1px solid var(--border);background:var(--card)}
+.data-table{width:100%;border-collapse:collapse;min-width:560px}
+.data-table caption{
+  text-align:left;padding:12px 16px;
+  font:400 13px/16px var(--f-mono);
+  color:var(--fg-muted);
+  text-transform:uppercase;letter-spacing:.08em;
+  border-bottom:1px solid var(--border);
+}
+.data-table th{
+  text-align:left;padding:10px 16px;
+  font:400 13px/16px var(--f-mono);
+  color:var(--fg-muted);
+  text-transform:uppercase;letter-spacing:.06em;
+  border-bottom:1px solid var(--border);
+  white-space:nowrap;
+}
+.data-table td{
+  padding:12px 16px;
+  border-bottom:1px solid var(--border);
+  font:400 16px/24px var(--f-sans);
+  vertical-align:middle;
+}
+.data-table tr:last-child td{border-bottom:0}
+.badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font:400 13px/16px var(--f-mono);
+  padding:2px 8px;border:1px solid var(--border);white-space:nowrap;
+}
+.badge-pass{border-color:var(--fg);color:var(--fg)}
+.badge-fail{border-color:var(--accent);color:var(--accent-text)}
+
+/* ============================================================
+   10. Tipografía
+   ============================================================ */
+.font-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.font-card{
+  border:1px solid var(--border);background:var(--card);
+  padding:var(--s-xl);display:flex;flex-direction:column;gap:12px;
+}
+.font-card .font-glyph{font-size:64px;line-height:1;color:var(--accent)}
+.font-card h3{font:700 19px/26px var(--f-sans)}
+.font-card p{font:400 16px/24px var(--f-sans);color:var(--fg-muted)}
+.font-card .mono{font:400 13px/18px var(--f-mono);color:var(--fg-muted)}
+
+.type-list{border-top:1px solid var(--border)}
+.type-row{
+  display:grid;grid-template-columns:minmax(180px,240px) minmax(0,1fr);
+  gap:8px 24px;padding:20px 0;border-bottom:1px solid var(--border);
+  align-items:baseline;
+}
+.type-token{font:400 13px/18px var(--f-mono);color:var(--accent-text);overflow-wrap:anywhere}
+.type-specs{font:400 13px/18px var(--f-mono);color:var(--fg-muted);margin-top:4px}
+.type-sample{overflow-wrap:anywhere}
+
+/* ============================================================
+   11. Espaciado y retícula
+   ============================================================ */
+.space-list{display:flex;flex-direction:column;gap:6px}
+.space-row{display:grid;grid-template-columns:56px minmax(0,1fr) 64px;gap:16px;align-items:center}
+.space-name{font:400 13px/16px var(--f-mono);color:var(--fg-muted)}
+.space-track{background:var(--bg-alt);height:12px;border:1px solid var(--border)}
+.space-fill{display:block;height:100%;background:var(--accent)}
+.space-val{font:400 13px/16px var(--f-mono);text-align:right;color:var(--fg)}
+
+.grid-demo{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:12px;margin-top:8px}
+.grid-demo span{height:72px;background:var(--bg-alt);border:1px solid var(--border)}
+.grid-demo span:nth-child(-n+4){background:color-mix(in srgb,var(--accent) 12%,var(--bg-alt));border-color:color-mix(in srgb,var(--accent) 30%,var(--border))}
+
+/* ============================================================
+   12. Profundidad
+   ============================================================ */
+.elev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px}
+.elev-card{
+  background:var(--card);border:1px solid var(--border);
+  padding:var(--s-xl);min-height:150px;
+  display:flex;flex-direction:column;justify-content:space-between;gap:16px;
+}
+.elev-card p:first-child{font:700 16px/24px var(--f-sans)}
+.elev-card p:last-child{font:400 13px/18px var(--f-mono);color:var(--fg-muted);overflow-wrap:anywhere}
+.elev-1{box-shadow:var(--sh-1)}
+.elev-2{box-shadow:var(--sh-2)}
+.elev-3{box-shadow:var(--sh-3)}
+
+/* ============================================================
+   13. Formas
+   ============================================================ */
+.shape-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:24px}
+.shape-tile{display:flex;flex-direction:column;gap:10px}
+.shape-box{height:96px;background:var(--bg-alt);border:1px solid var(--border)}
+.shape-name{font:400 13px/18px var(--f-mono);color:var(--accent-text)}
+.shape-val{font:400 13px/18px var(--f-mono);color:var(--fg-muted)}
+
+/* ============================================================
+   14. Componentes
+   ============================================================ */
+.demo{
+  border:1px solid var(--border);
+  background:var(--bg-alt);
+  padding:clamp(16px,3vw,32px);
+  display:flex;flex-direction:column;gap:20px;
+}
+.demo + .demo{margin-top:24px}
+.demo-label{
+  font:400 13px/16px var(--f-mono);
+  letter-spacing:.08em;text-transform:uppercase;
+  color:var(--fg-muted);
+}
+.demo-row{display:flex;flex-wrap:wrap;gap:16px;align-items:center}
+.demo-note{font:400 13px/20px var(--f-sans);color:var(--fg-muted);max-width:70ch}
+
+/* botones */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-height:48px;padding:12px 24px;
+  border:0;border-radius:var(--r-pill);
+  background:var(--c-primary-strong);color:var(--c-on-primary);
+  font:500 19.216px/24px var(--f-display);
+  text-decoration:none;cursor:pointer;
+  transition:background-color .15s ease,transform .15s ease;
+}
+.btn:hover{background:var(--c-primary-hover)}
+.btn:active{background:var(--c-primary-active);transform:scale(.98)}
+.btn[disabled],.btn.is-disabled{
+  background:var(--c-disabled-bg);color:var(--c-disabled-text);
+  cursor:not-allowed;transform:none;
+}
+.btn-icon{
+  width:32px;height:32px;flex:none;
+  display:inline-grid;place-items:center;
+  border:0;border-radius:var(--r-full);
+  background:var(--bg-muted);color:var(--accent);
+  cursor:pointer;
+  transition:background-color .15s ease,color .15s ease;
+}
+.btn-icon:hover{background:var(--c-primary-strong);color:var(--c-on-primary)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:8px 0;border:0;background:none;
+  color:var(--link);
+  font:400 20px/30px var(--f-sans);
+  text-decoration:none;cursor:pointer;
+}
+.btn-ghost:hover{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
+
+/* tarjetas */
+.card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px}
+.card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:var(--r-none);
+  padding:16px 12px;
+  display:flex;flex-direction:column;gap:12px;
+  transition:box-shadow .2s ease,border-color .2s ease;
+}
+.card:hover{box-shadow:var(--sh-1)}
+.card h3{font:700 19px/26px var(--f-display)}
+.card p{font:400 20px/30px var(--f-sans);color:var(--fg-muted)}
+.card a{color:var(--link);text-decoration:none;font:400 16px/24px var(--f-sans);margin-top:auto}
+.card a:hover{text-decoration:underline;text-underline-offset:3px}
+
+.course-card{
+  background:var(--card);border:1px solid var(--border);border-radius:0;
+  padding:16px;display:flex;flex-direction:column;gap:8px;
+  transition:border-color .2s ease,box-shadow .2s ease;
+}
+.course-card:hover{border-color:var(--c-primary);box-shadow:var(--sh-1)}
+.course-icon{width:40px;height:40px;display:grid;place-items:center;background:var(--bg-muted);color:var(--accent)}
+.course-title{font:700 19px/26px var(--f-display)}
+.course-link{color:var(--link);text-decoration:none;font:400 16px/24px var(--f-sans);margin-top:auto}
+.course-link:hover{text-decoration:underline;text-underline-offset:3px}
+
+.exp-card{
+  background:var(--card);border:1px solid var(--border);
+  border-left:4px solid var(--c-primary);border-radius:0;
+  padding:16px 24px;display:flex;flex-direction:column;gap:8px;
+}
+.exp-head{display:flex;justify-content:space-between;gap:8px 16px;flex-wrap:wrap;align-items:baseline}
+.exp-role{font:700 19px/26px var(--f-display)}
+.exp-date{font:400 16px/24px var(--f-mono);color:var(--fg-muted)}
+.exp-card p{font:400 16px/24px var(--f-sans);color:var(--fg-muted)}
+
+/* formularios */
+.field{display:flex;flex-direction:column;gap:8px;max-width:440px;width:100%}
+.field label{font:700 16px/24px var(--f-sans)}
+.field input{
+  height:48px;padding:12px 16px;
+  border:2px solid var(--border);border-radius:0;
+  background:var(--card);color:var(--fg);
+  font:400 20px/30px var(--f-sans);
+  transition:border-color .15s ease,box-shadow .15s ease;
+}
+.field input::placeholder{color:var(--fg-muted);opacity:1}
+.field input:focus{
+  outline:none;border-color:var(--c-primary);
+  box-shadow:0 0 0 4px rgba(231,86,46,.18);
+}
+.field .hint{font:400 13px/20px var(--f-sans);color:var(--fg-muted)}
+
+/* etiquetas, avatar, iconos */
+.chip{
+  display:inline-flex;align-items:center;
+  padding:4px 12px;border-radius:var(--r-full);
+  background:var(--bg-muted);color:var(--fg);
+  font:500 13px/16px var(--f-display);
+}
+.avatar{
+  width:200px;height:200px;border-radius:var(--r-full);
+  border:4px solid var(--bg-muted);object-fit:cover;
+}
+.social{
+  width:32px;height:32px;display:inline-grid;place-items:center;
+  border:0;border-radius:var(--r-full);
+  background:var(--bg-muted);color:var(--fg);
+  cursor:pointer;
+  transition:background-color .15s ease,color .15s ease;
+}
+.social:hover{background:var(--c-primary-strong);color:var(--c-on-primary)}
+.contact-btn{
+  display:inline-flex;align-items:center;gap:12px;
+  padding:12px 16px;border-radius:0;
+  background:var(--card);color:var(--fg);
+  border:1px solid var(--border);
+  text-decoration:none;font:400 16px/24px var(--f-sans);
+  transition:border-color .15s ease,color .15s ease;
+}
+.contact-btn:hover{border-color:var(--c-primary);color:var(--c-primary)}
+.contact-btn svg{color:var(--accent);flex:none}
+
+/* navegación de muestra */
+.nav-demo{
+  height:64px;display:flex;align-items:center;justify-content:space-between;
+  gap:24px;padding:0 16px;background:transparent;
+  border-bottom:1px solid var(--border);
+}
+.nav-demo ul{display:flex;gap:24px;flex-wrap:wrap}
+.nav-demo a{
+  font:400 20px/30px var(--f-sans);
+  color:var(--fg);text-decoration:none;
+  padding:4px 0;border-bottom:2px solid transparent;
+}
+.nav-demo a:hover{color:var(--accent-text);border-bottom-color:var(--accent)}
+.nav-demo a[aria-current="page"]{color:var(--accent-text);border-bottom-width:3px;border-bottom-color:var(--accent)}
+[data-theme="dark"] .nav-demo a[aria-current="page"]{color:var(--fg)}
+
+/* enlaces */
+.link-inline{color:var(--link);text-decoration:none}
+.link-inline:hover{color:var(--accent-text);text-decoration:underline;text-underline-offset:3px}
+.link-title{
+  font:900 24px/32px var(--f-display);
+  color:var(--accent);text-decoration:none;
+  transition:opacity .15s ease;
+}
+.link-title:hover{opacity:.8}
+
+/* diálogo */
+dialog{
+  border:1px solid var(--border);border-radius:var(--r-md);
+  padding:0;background:var(--card);color:var(--fg);
+  max-width:440px;width:calc(100% - 32px);
+}
+dialog::backdrop{background:var(--c-overlay)}
+.dialog-inner{padding:24px;display:flex;flex-direction:column;gap:16px}
+.dialog-inner h3{font:900 24px/32px var(--f-display)}
+.dialog-inner p{font:400 16px/24px var(--f-sans);color:var(--fg-muted)}
+.dialog-actions{display:flex;gap:12px;flex-wrap:wrap}
+
+/* ============================================================
+   15. Reglas
+   ============================================================ */
+.rules-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.rule-col{border:1px solid var(--border);background:var(--card);padding:var(--s-xl)}
+.rule-col h3{
+  font:700 16px/24px var(--f-sans);
+  letter-spacing:.08em;text-transform:uppercase;
+  margin-bottom:8px;
+}
+.rule-list li{
+  display:flex;gap:12px;align-items:flex-start;
+  padding:12px 0;border-bottom:1px solid var(--border);
+  font:400 16px/24px var(--f-sans);
+}
+.rule-list li:last-child{border-bottom:0}
+.rule-mark{
+  flex:none;width:22px;height:22px;margin-top:1px;
+  display:grid;place-items:center;
+  border:1px solid currentColor;
+  font:400 13px/1 var(--f-mono);
+}
+.rule-yes .rule-mark{color:var(--accent-text)}
+.rule-no .rule-mark{color:var(--fg-muted)}
+
+/* ============================================================
+   16. Pie
+   ============================================================ */
+.site-footer{
+  padding:var(--s-4xl) clamp(16px,4vw,48px);
+  display:flex;flex-wrap:wrap;gap:16px 32px;
+  align-items:center;justify-content:space-between;
+  border-top:1px solid var(--border);
+}
+.site-footer p{font:400 13px/20px var(--f-mono);color:var(--fg-muted)}
+.site-footer a{color:var(--link);text-decoration:none}
+.site-footer a:hover{text-decoration:underline}
+
+/* aviso de copiado */
+.toast{
+  position:fixed;left:50%;bottom:24px;z-index:80;
+  transform:translate(-50%,16px);
+  background:var(--c-charcoal-deep);color:var(--c-on-dark);
+  border:1px solid var(--c-charcoal);
+  padding:12px 20px;border-radius:0;
+  font:400 13px/16px var(--f-mono);
+  opacity:0;pointer-events:none;
+  transition:opacity .2s ease,transform .2s ease;
+}
+.toast.is-visible{opacity:1;transform:translate(-50%,0)}
+
+/* ============================================================
+   17. Responsivo
+   ============================================================ */
+@media (max-width:1023px){
+  .layout{grid-template-columns:1fr}
+  .sidebar{display:none}
+  .menu-btn{display:inline-grid}
+  .hero{grid-template-columns:1fr;gap:32px}
+  .specimen{min-height:auto;padding:24px}
+  .specimen-aa{font-size:64px}
+  .font-grid{grid-template-columns:1fr}
+  .rules-grid{grid-template-columns:1fr}
+}
+@media (max-width:599px){
+  .section,.hero{padding-left:16px;padding-right:16px}
+  .section{padding-top:48px;padding-bottom:48px}
+  .hero{padding-top:40px;padding-bottom:40px}
+  .section-head{grid-template-columns:1fr;gap:6px}
+  .section-index{padding-top:0}
+  .section-desc{grid-column:1;font-size:18px;line-height:27px}
+  .section-title{font-size:32px;line-height:40px}
+  .t-display,.t-h1,.t-h2{font-size:32px;line-height:40px}
+  .type-row{grid-template-columns:1fr;gap:6px;padding:16px 0}
+  .avatar{width:160px;height:160px}
+  .grid-demo{grid-template-columns:repeat(4,1fr)}
+  .grid-demo span:nth-child(n+5){display:none}
+  .space-row{grid-template-columns:44px minmax(0,1fr) 56px}
+  .hero-meta{font-size:12px}
+  .nav-demo{height:auto;padding:12px;flex-direction:column;align-items:flex-start;gap:8px}
+  .nav-demo ul{gap:16px}
+  .nav-demo a{font-size:16px;line-height:24px}
+  .data-table{min-width:520px}
+  .demo{padding:16px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.01ms!important;
+    scroll-behavior:auto!important;
+  }
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#contenido">Saltar al contenido</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#overview">
+      <img src="assets/img/isotipo.svg" alt="" width="18" height="24">
+      <span class="brand-name">jonmircha<span class="brand-dot">.</span><span class="brand-suffix">design</span></span>
+    </a>
+    <div class="header-actions">
+      <button class="icon-btn" id="theme-toggle" type="button" aria-pressed="false" aria-label="Activar tema oscuro">
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <circle cx="12" cy="12" r="4"></circle>
+          <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path>
+        </svg>
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"></path>
+        </svg>
+      </button>
+      <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menú de secciones">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true" focusable="false">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav class="mobile-nav" id="mobile-nav" hidden aria-label="Secciones del sistema">
+  <a href="#overview"><span class="num">01</span> Overview</a>
+  <a href="#colors"><span class="num">02</span> Colors</a>
+  <a href="#typography"><span class="num">03</span> Typography</a>
+  <a href="#layout"><span class="num">04</span> Layout</a>
+  <a href="#elevation"><span class="num">05</span> Elevation &amp; Depth</a>
+  <a href="#shapes"><span class="num">06</span> Shapes</a>
+  <a href="#components"><span class="num">07</span> Components</a>
+  <a href="#rules"><span class="num">08</span> Do's and Don'ts</a>
+</nav>
+
+<div class="layout">
+  <aside class="sidebar" aria-label="Índice del sistema de diseño">
+    <p class="sidebar-label">Sistema de diseño</p>
+    <nav aria-label="Secciones">
+      <ol class="sidebar-nav" id="section-nav">
+        <li><a href="#overview" data-section="overview"><span class="num">01</span> Overview</a></li>
+        <li><a href="#colors" data-section="colors"><span class="num">02</span> Colors</a></li>
+        <li><a href="#typography" data-section="typography"><span class="num">03</span> Typography</a></li>
+        <li><a href="#layout" data-section="layout"><span class="num">04</span> Layout</a></li>
+        <li><a href="#elevation" data-section="elevation"><span class="num">05</span> Elevation &amp; Depth</a></li>
+        <li><a href="#shapes" data-section="shapes"><span class="num">06</span> Shapes</a></li>
+        <li><a href="#components" data-section="components"><span class="num">07</span> Components</a></li>
+        <li><a href="#rules" data-section="rules"><span class="num">08</span> Do's and Don'ts</a></li>
+      </ol>
+    </nav>
+    <div class="sidebar-foot">
+      <p>v1.0 · 22 colores<br>39 componentes</p>
+      <p style="margin-top:8px"><a href="DESIGN.md">Abrir DESIGN.md</a></p>
+    </div>
+  </aside>
+
+  <main class="main" id="contenido">
+
+    <!-- 01 · Portada -->
+    <section class="hero" id="overview" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Sistema de diseño · v1.0</p>
+        <h1 id="hero-title">Un sistema con <em>acento naranja</em>, aire y tipografía con propósito.</h1>
+        <p class="hero-lead">
+          Referencia visual de la marca jonmircha. Cada color, tamaño y espacio de esta página
+          sale directamente de <span class="mono" style="font-size:16px">DESIGN.md</span>, el mismo archivo
+          que usan los agentes para construir el sitio.
+        </p>
+        <div class="hero-meta">
+          <span>22 colores</span>
+          <span>13 escalas tipográficas</span>
+          <span>18 espaciados</span>
+          <span>5 radios</span>
+          <span>39 componentes</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn" href="#components">Explorar componentes</a>
+          <a class="btn-ghost" href="DESIGN.md">Leer DESIGN.md <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+
+      <div class="specimen" aria-hidden="true">
+        <div class="specimen-top">
+          <p class="specimen-aa">Aa</p>
+          <p class="specimen-tag">Raleway<br>100–900<br>Display</p>
+        </div>
+        <div class="specimen-dots">
+          <span style="background:#E7562E"></span>
+          <span style="background:#D0440F"></span>
+          <span style="background:#E7762E"></span>
+          <span style="background:#202225"></span>
+          <span style="background:#EEEEEE"></span>
+        </div>
+        <div class="specimen-foot">
+          <div>
+            <strong>jonmircha</strong>
+            <p>DESIGN.md · 2026</p>
+          </div>
+          <p>#E7562E</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 · Colores -->
+    <section class="section" id="colors" aria-labelledby="colors-title">
+      <div class="section-head">
+        <p class="section-index">02</p>
+        <h2 class="section-title" id="colors-title">Colors</h2>
+        <p class="section-desc">
+          Dos naranjas de marca, un azul de enlace y una base de neutros de alto contraste.
+          Cada color tiene un rol: no se elige por gusto, se elige por función.
+        </p>
+      </div>
+
+      <div class="block">
+        <h3 class="subhead">Naranjas de marca</h3>
+        <div class="swatch-grid">
+          <button class="swatch" type="button" data-copy="#E7562E">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#E7562E"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.primary</span>
+              <span class="swatch-hex">#E7562E</span>
+              <span class="swatch-role">Identidad, títulos, íconos y acentos</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#D0440F">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#D0440F"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.primary-strong</span>
+              <span class="swatch-hex">#D0440F</span>
+              <span class="swatch-role">Fondo de botones con texto blanco</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#C63C0A">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#C63C0A"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.primary-hover</span>
+              <span class="swatch-hex">#C63C0A</span>
+              <span class="swatch-role">Estado hover del botón principal</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#A83208">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#A83208"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.primary-active</span>
+              <span class="swatch-hex">#A83208</span>
+              <span class="swatch-role">Estado presionado del botón</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#E7762E">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#E7762E"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.secondary</span>
+              <span class="swatch-hex">#E7762E</span>
+              <span class="swatch-role">Énfasis puntual</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3 class="subhead">Interacción y superficies</h3>
+        <div class="swatch-grid">
+          <button class="swatch" type="button" data-copy="#0088CC">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#0088CC"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.link</span>
+              <span class="swatch-hex">#0088CC</span>
+              <span class="swatch-role">Enlaces y acciones secundarias</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#73CFFA">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#73CFFA"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.accent-cyan</span>
+              <span class="swatch-hex">#73CFFA</span>
+              <span class="swatch-role">Enlaces en modo oscuro</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#FCFCFC">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#FCFCFC"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.surface</span>
+              <span class="swatch-hex">#FCFCFC</span>
+              <span class="swatch-role">Fondo base</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#F7F7F7">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#F7F7F7"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.surface-alt</span>
+              <span class="swatch-hex">#F7F7F7</span>
+              <span class="swatch-role">Secciones alternas</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#EEEEEE">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#EEEEEE"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.surface-muted</span>
+              <span class="swatch-hex">#EEEEEE</span>
+              <span class="swatch-role">Bordes, chips e íconos sociales</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#FFFFFF">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#FFFFFF"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.white</span>
+              <span class="swatch-hex">#FFFFFF</span>
+              <span class="swatch-role">Tarjetas y campos</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3 class="subhead">Texto y carbones</h3>
+        <div class="swatch-grid">
+          <button class="swatch" type="button" data-copy="#202225">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#202225"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.on-surface</span>
+              <span class="swatch-hex">#202225</span>
+              <span class="swatch-role">Texto principal</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#808080">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#808080"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.on-surface-muted</span>
+              <span class="swatch-hex">#808080</span>
+              <span class="swatch-role">Texto terciario y placeholders</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#FFFFFF">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#FFFFFF"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.on-primary</span>
+              <span class="swatch-hex">#FFFFFF</span>
+              <span class="swatch-role">Texto sobre naranja</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#2B3A42">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#2B3A42"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.charcoal</span>
+              <span class="swatch-hex">#2B3A42</span>
+              <span class="swatch-role">Capas elevadas en oscuro</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#20252C">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#20252C"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.charcoal-mid</span>
+              <span class="swatch-hex">#20252C</span>
+              <span class="swatch-role">Tarjetas y campos oscuros</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#202B38">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#202B38"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.charcoal-deep</span>
+              <span class="swatch-hex">#202B38</span>
+              <span class="swatch-role">Fondo del modo oscuro</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3 class="subhead">Modo oscuro y estados</h3>
+        <div class="swatch-grid">
+          <button class="swatch" type="button" data-copy="#F7F7F7">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#F7F7F7"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.on-surface-dark</span>
+              <span class="swatch-hex">#F7F7F7</span>
+              <span class="swatch-role">Texto en modo oscuro</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#A9B2BA">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#A9B2BA"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.on-surface-dark-muted</span>
+              <span class="swatch-hex">#A9B2BA</span>
+              <span class="swatch-role">Texto secundario en oscuro</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#CCCCCC">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#CCCCCC"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.disabled-bg</span>
+              <span class="swatch-hex">#CCCCCC</span>
+              <span class="swatch-role">Fondo de controles deshabilitados</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="#555555">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip" style="--sw:#555555"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.disabled-text</span>
+              <span class="swatch-hex">#555555</span>
+              <span class="swatch-role">Texto deshabilitado</span>
+            </span>
+          </button>
+          <button class="swatch" type="button" data-copy="rgba(0, 0, 0, 0.5)">
+            <span class="visually-hidden">Copiar color </span>
+            <span class="swatch-chip is-alpha" style="--sw:rgba(0,0,0,.5)"></span>
+            <span class="swatch-body">
+              <span class="swatch-token">colors.overlay</span>
+              <span class="swatch-hex">rgba(0,0,0,.5)</span>
+              <span class="swatch-role">Velo detrás de los modales</span>
+            </span>
+          </button>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3 class="subhead">Contraste verificado</h3>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Pares de fondo y texto · WCAG AA exige 4.5:1 en texto normal</caption>
+            <thead>
+              <tr>
+                <th scope="col">Combinación</th>
+                <th scope="col">Ratio</th>
+                <th scope="col">Veredicto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Blanco sobre naranja fuerte (#D0440F)</td>
+                <td>4.65:1</td>
+                <td><span class="badge badge-pass">Cumple AA</span></td>
+              </tr>
+              <tr>
+                <td>Blanco sobre naranja de marca (#E7562E)</td>
+                <td>3.55:1</td>
+                <td><span class="badge badge-fail">Solo texto grande</span></td>
+              </tr>
+              <tr>
+                <td>Texto principal sobre fondo base</td>
+                <td>15.54:1</td>
+                <td><span class="badge badge-pass">Cumple AAA</span></td>
+              </tr>
+              <tr>
+                <td>Gris #808080 sobre fondo base</td>
+                <td>3.85:1</td>
+                <td><span class="badge badge-fail">Solo texto decorativo</span></td>
+              </tr>
+              <tr>
+                <td>Azul de enlace ajustado (#0077B3) sobre fondo base</td>
+                <td>4.77:1</td>
+                <td><span class="badge badge-pass">Cumple AA</span></td>
+              </tr>
+              <tr>
+                <td>Blanco cálido sobre carbón profundo</td>
+                <td>13.39:1</td>
+                <td><span class="badge badge-pass">Cumple AAA</span></td>
+              </tr>
+              <tr>
+                <td>Cian sobre carbón profundo</td>
+                <td>8.22:1</td>
+                <td><span class="badge badge-pass">Cumple AAA</span></td>
+              </tr>
+              <tr>
+                <td>Texto deshabilitado sobre su fondo</td>
+                <td>4.64:1</td>
+                <td><span class="badge badge-pass">Cumple AA</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="demo-note" style="margin-top:12px">
+          Para el texto de lectura de esta página se usa #6B6B6B en modo claro (5.19:1), porque el gris
+          del token no alcanza AA a tamaños pequeños. El token sigue mostrado tal cual en la paleta.
+          Con el azul pasa lo mismo: #0088CC queda en 3.80:1, así que el texto de los enlaces usa
+          #0077B3, un paso más oscuro del mismo tono (4.77:1). El color de marca se conserva en la paleta
+          y en los elementos gráficos. El naranja de los rótulos pequeños usa #C63C0A (4.84:1 sobre
+          fondo alterno) por la misma razón.
+        </p>
+      </div>
+    </section>
+
+    <!-- 03 · Tipografía -->
+    <section class="section" id="typography" aria-labelledby="typography-title">
+      <div class="section-head">
+        <p class="section-index">03</p>
+        <h2 class="section-title" id="typography-title">Typography</h2>
+        <p class="section-desc">
+          Tres familias con roles claros. La jerarquía se construye con tamaño, peso y color;
+          nunca con opacidad. El cuerpo nunca baja de 16px.
+        </p>
+      </div>
+
+      <div class="block">
+        <h3 class="subhead">Familias</h3>
+        <div class="font-grid">
+          <article class="font-card">
+            <p class="font-glyph" style="font-family:var(--f-sans);font-weight:700">Aa</p>
+            <h3>PT Sans</h3>
+            <p>Fuente principal: cuerpo de texto, navegación y contenido general.</p>
+            <p class="mono">400 · 700 · itálica</p>
+          </article>
+          <article class="font-card">
+            <p class="font-glyph" style="font-family:var(--f-display);font-weight:900">Aa</p>
+            <h3>Raleway</h3>
+            <p>Fuente secundaria: títulos, botones, listas y énfasis. Black solo para titulares.</p>
+            <p class="mono">400 · 500 · 700 · 900</p>
+          </article>
+          <article class="font-card">
+            <p class="font-glyph" style="font-family:var(--f-mono);font-weight:400">{ }</p>
+            <h3>Roboto Mono</h3>
+            <p>Código, tokens y metadatos como fechas. Aporta precisión técnica.</p>
+            <p class="mono">400</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3 class="subhead">Escala tipográfica</h3>
+        <div class="type-list">
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.display</p>
+              <p class="type-specs">Raleway · 900 · 40/48 · −0.01em</p>
+            </div>
+            <p class="type-sample t-display">Diseño que enseña</p>
+          </div>
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.h1</p>
+              <p class="type-specs">PT Sans · 700 · 40/48</p>
+            </div>
+            <p class="type-sample t-h1">Aprende haciendo</p>
+          </div>
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.h2</p>
+              <p class="type-specs">Raleway · 900 · 40/48</p>
+            </div>
+            <p class="type-sample t-h2">Cursos y recursos</p>
+          </div>
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.h3</p>
+              <p class="type-specs">PT Sans · 700 · 16/24</p>
+            </div>
+            <p class="type-sample t-h3">Subsección del contenido</p>
+          </div>
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.body</p>
+              <p class="type-specs">PT Sans · 400 · 20/30</p>
+            </div>
+            <p class="type-sample t-body">La claridad y la legibilidad van primero: layouts limpios, espacio en blanco y tipografía con propósito.</p>
+          </div>
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.list-item</p>
+              <p class="type-specs">Raleway · 400 · 20/30</p>
+            </div>
+            <p class="type-sample t-list">Fundamentos de HTML y CSS</p>
+          </div>
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.nav</p>
+              <p class="type-specs">PT Sans · 400 · 20/30</p>
+            </div>
+            <p class="type-sample t-nav">Inicio · Cursos · Blog</p>
+          </div>
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.link</p>
+              <p class="type-specs">PT Sans · 400 · 20/30</p>
+            </div>
+            <p class="type-sample t-link" style="color:var(--link)">Ver todos los recursos</p>
+          </div>
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.small</p>
+              <p class="type-specs">Raleway · 400 · 16/24</p>
+            </div>
+            <p class="type-sample t-small">Texto de apoyo para notas breves</p>
+          </div>
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.button</p>
+              <p class="type-specs">Raleway · 500 · 19.216/24</p>
+            </div>
+            <p class="type-sample t-button">Reservar mi lugar</p>
+          </div>
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.label</p>
+              <p class="type-specs">PT Sans · 700 · 16/24</p>
+            </div>
+            <p class="type-sample t-label">Correo electrónico</p>
+          </div>
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.chip</p>
+              <p class="type-specs">Raleway · 500 · 13/16</p>
+            </div>
+            <p class="type-sample"><span class="chip t-chip">JavaScript</span></p>
+          </div>
+          <div class="type-row">
+            <div>
+              <p class="type-token">typography.meta</p>
+              <p class="type-specs">Roboto Mono · 400 · 16/24</p>
+            </div>
+            <p class="type-sample t-meta">2026 · 6 min de lectura</p>
+          </div>
+        </div>
+        <p class="demo-note" style="margin-top:16px">
+          Raleway se sirve con la fuente variable oficial (100–900). El archivo
+          <span class="mono">raleway-black.woff2</span> del proyecto resultó ser una copia del peso fino,
+          así que se sustituyó por la variable para que el 900 se vea como debe.
+        </p>
+      </div>
+    </section>
+
+    <!-- 04 · Layout -->
+    <section class="section" id="layout" aria-labelledby="layout-title">
+      <div class="section-head">
+        <p class="section-index">04</p>
+        <h2 class="section-title" id="layout-title">Layout</h2>
+        <p class="section-desc">
+          Todo el espaciado nace de una unidad de 8px. El aire es intencional: las secciones
+          se separan por al menos 92px y el contenido respira.
+        </p>
+      </div>
+
+      <div class="block">
+        <h3 class="subhead">Escala de espaciado</h3>
+        <div class="space-list">
+          <div class="space-row">
+            <span class="space-name">xs</span>
+            <span class="space-track"><span class="space-fill" style="width:2.94%"></span></span>
+            <span class="space-val">4px</span>
+          </div>
+          <div class="space-row">
+            <span class="space-name">sm</span>
+            <span class="space-track"><span class="space-fill" style="width:5.88%"></span></span>
+            <span class="space-val">8px</span>
+          </div>
+          <div class="space-row">
+            <span class="space-name">md</span>
+            <span class="space-track"><span class="space-fill" style="width:8.82%"></span></span>
+            <span class="space-val">12px</span>
+          </div>
+          <div class="space-row">
+            <span class="space-name">lg</span>
+            <span class="space-track"><span class="space-fill" style="width:11.76%"></span></span>
+            <span class="space-val">16px</span>
+          </div>
+          <div class="space-row">
+            <span class="space-name">xl</span>
+            <span class="space-track"><span class="space-fill" style="width:17.65%"></span></span>
+            <span class="space-val">24px</span>
+          </div>
+          <div class="space-row">
+            <span class="space-name">2xl</span>
+            <span class="space-track"><span class="space-fill" style="width:23.53%"></span></span>
+            <span class="space-val">32px</span>
+          </div>
+          <div class="space-row">
+            <span class="space-name">3xl</span>
+            <span class="space-track"><span class="space-fill" style="width:29.41%"></span></span>
+            <span class="space-val">40px</span>
+          </div>
+          <div class="space-row">
+            <span class="space-name">4xl</span>
+            <span class="space-track"><span class="space-fill" style="width:35.29%"></span></span>
+            <span class="space-val">48px</span>
+          </div>
+          <div class="space-row">
+            <span class="space-name">5xl</span>
+            <span class="space-track"><span class="space-fill" style="width:67.65%"></span></span>
+            <span class="space-val">92px</span>
+          </div>
+          <div class="space-row">
+            <span class="space-name">6xl</span>
+            <span class="space-track"><span class="space-fill" style="width:100%"></span></span>
+            <span class="space-val">136px</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="block">
+        <h3 class="subhead">Retícula de 12 columnas</h3>
+        <div class="grid-demo" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+          <span></span><span></span><span></span><span></span>
+        </div>
+        <p class="demo-note" style="margin-top:12px">
+          Escritorio: 12 columnas con 48px de margen. Tableta: 8 columnas. Móvil: una columna con 12–16px.
+          Ancho máximo del contenido: 1440px.
+        </p>
+      </div>
+
+      <div class="block">
+        <h3 class="subhead">Puntos de quiebre</h3>
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption>Comportamiento responsivo, mobile-first</caption>
+            <thead>
+              <tr>
+                <th scope="col">Rango</th>
+                <th scope="col">Ancho</th>
+                <th scope="col">Columnas</th>
+                <th scope="col">Márgenes</th>
+                <th scope="col">Secciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Móvil</td><td>320–599px</td><td>1</td><td>12px</td><td>24px</td></tr>
+              <tr><td>Tableta</td><td>600–1023px</td><td>2–3</td><td>48px</td><td>48px</td></tr>
+              <tr><td>Escritorio</td><td>1024–1439px</td><td>3 o más</td><td>48–92px</td><td>92px</td></tr>
+              <tr><td>Escritorio amplio</td><td>1440px+</td><td>3 o más</td><td>centrado a 1440px</td><td>92–136px</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 05 · Profundidad -->
+    <section class="section" id="elevation" aria-labelledby="elevation-title">
+      <div class="section-head">
+        <p class="section-index">05</p>
+        <h2 class="section-title" id="elevation-title">Elevation &amp; Depth</h2>
+        <p class="section-desc">
+          El diseño es mayormente plano. La sombra aparece solo cuando hay interacción o
+          apilamiento; nunca como decoración. En oscuro, la profundidad se hace con superficies.
+        </p>
+      </div>
+
+      <div class="elev-grid">
+        <div class="elev-card">
+          <p>Plano</p>
+          <p>sin sombra<br>tarjetas en reposo</p>
+        </div>
+        <div class="elev-card elev-1">
+          <p>Sutil</p>
+          <p>0 2px 4px · 8 %<br>hover de tarjetas</p>
+        </div>
+        <div class="elev-card elev-2">
+          <p>Media</p>
+          <p>0 4px 12px · 12 %<br>modales y popovers</p>
+        </div>
+        <div class="elev-card elev-3">
+          <p>Alta</p>
+          <p>0 8px 24px · 16 %<br>botones flotantes</p>
+        </div>
+      </div>
+      <p class="demo-note" style="margin-top:16px">
+        Nunca se supera <span class="mono">0 8px 24px</span>. En modo oscuro las sombras se sustituyen
+        por un escalón de superficie: carbón medio para tarjetas y carbón oscuro para capas elevadas.
+      </p>
+    </section>
+
+    <!-- 06 · Formas -->
+    <section class="section" id="shapes" aria-labelledby="shapes-title">
+      <div class="section-head">
+        <p class="section-index">06</p>
+        <h2 class="section-title" id="shapes-title">Shapes</h2>
+        <p class="section-desc">
+          Las esquinas por defecto son rectas: la nitidez es parte de la identidad. El redondeo
+          se reserva para lo que flota, para lo especial y para los círculos.
+        </p>
+      </div>
+
+      <div class="shape-grid">
+        <div class="shape-tile">
+          <div class="shape-box" style="border-radius:0"></div>
+          <p class="shape-name">rounded.none</p>
+          <p class="shape-val">0px · por defecto</p>
+        </div>
+        <div class="shape-tile">
+          <div class="shape-box" style="border-radius:8px"></div>
+          <p class="shape-name">rounded.sm</p>
+          <p class="shape-val">8px · flotantes</p>
+        </div>
+        <div class="shape-tile">
+          <div class="shape-box" style="border-radius:16px"></div>
+          <p class="shape-name">rounded.md</p>
+          <p class="shape-val">16px · especiales</p>
+        </div>
+        <div class="shape-tile">
+          <div class="shape-box" style="border-radius:50px"></div>
+          <p class="shape-name">rounded.pill</p>
+          <p class="shape-val">50px · botones</p>
+        </div>
+        <div class="shape-tile">
+          <div class="shape-box" style="border-radius:9999px;width:96px"></div>
+          <p class="shape-name">rounded.full</p>
+          <p class="shape-val">9999px · círculos</p>
+        </div>
+      </div>
+
+      <div class="block" style="margin-top:40px">
+        <h3 class="subhead">Motivo de marca</h3>
+        <div class="demo-row" style="align-items:center;gap:24px">
+          <img src="assets/img/isotipo.svg" alt="Isotipo del búho de jonmircha" style="height:96px;width:auto">
+          <p class="demo-note" style="max-width:48ch">
+            El búho es el motivo de la marca. Se construye con el degradado naranja y se usa como
+            sello, nunca como fondo que compita con la lectura.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 · Componentes -->
+    <section class="section" id="components" aria-labelledby="components-title">
+      <div class="section-head">
+        <p class="section-index">07</p>
+        <h2 class="section-title" id="components-title">Components</h2>
+        <p class="section-desc">
+          Las piezas reales del sistema, construidas con los tokens de arriba. Formas rectas,
+          un solo acento por elemento y estados que se entienden sin explicación.
+        </p>
+      </div>
+
+      <div class="demo">
+        <p class="demo-label">Botones</p>
+        <div class="demo-row">
+          <button class="btn" type="button">Reservar mi lugar</button>
+          <button class="btn" type="button" style="background:var(--c-primary-hover)">Hover</button>
+          <button class="btn" type="button" style="background:var(--c-primary-active);transform:scale(.98)">Presionado</button>
+          <button class="btn" type="button" disabled>Deshabilitado</button>
+          <button class="btn-icon" type="button" aria-label="Reproducir el video">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"></path></svg>
+          </button>
+          <button class="btn-icon" type="button" aria-label="Reproducir el video, estado hover" style="background:var(--c-primary-strong);color:var(--c-on-primary)">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M8 5v14l11-7z"></path></svg>
+          </button>
+          <a class="btn-ghost" href="#components">Ver el curso <span aria-hidden="true">→</span></a>
+        </div>
+        <p class="demo-note">
+          El botón principal usa <span class="mono">primary-strong</span> (#D0440F) para que el texto
+          blanco alcance 4.65:1. El naranja de marca queda para títulos, íconos y acentos.
+        </p>
+      </div>
+
+      <div class="demo">
+        <p class="demo-label">Tarjetas</p>
+        <div class="card-grid">
+          <article class="card">
+            <p class="t-chip" style="color:var(--accent-text)">Curso</p>
+            <h3>Fundamentos de la web</h3>
+            <p>HTML, CSS y JavaScript desde cero, con proyectos reales.</p>
+            <a href="#components">Ver el curso →</a>
+          </article>
+          <article class="course-card">
+            <span class="course-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"></path><path d="M10 9l5 3-5 3z"></path></svg>
+            </span>
+            <p class="course-title">Playlist: CSS moderno</p>
+            <a class="course-link" href="#components">Ver →</a>
+          </article>
+          <article class="exp-card">
+            <div class="exp-head">
+              <p class="exp-role">Instructor y desarrollador</p>
+              <p class="exp-date">2020 — hoy</p>
+            </div>
+            <p>Más de 20 años enseñando tecnología en español.</p>
+            <p>Cursos, talleres y divulgación para una comunidad que no para de crecer.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="demo">
+        <p class="demo-label">Campos y formularios</p>
+        <div class="field">
+          <label for="demo-email">Correo electrónico</label>
+          <input id="demo-email" name="email" type="email" placeholder="tu@correo.com" autocomplete="email">
+          <p class="hint">Te avisamos cuando abra la próxima cohorte.</p>
+        </div>
+      </div>
+
+      <div class="demo">
+        <p class="demo-label">Etiquetas, avatar y contacto</p>
+        <div class="demo-row">
+          <span class="chip t-chip">HTML</span>
+          <span class="chip t-chip">CSS</span>
+          <span class="chip t-chip">JavaScript</span>
+          <span class="chip t-chip">Accesibilidad</span>
+        </div>
+        <div class="demo-row" style="align-items:flex-end;gap:32px">
+          <img class="avatar" src="assets/img/jonmircha.jpg" alt="Retrato de jonmircha" width="200" height="200" loading="lazy">
+          <div style="display:flex;flex-direction:column;gap:16px">
+            <div class="demo-row" style="gap:8px">
+              <button class="social" type="button" aria-label="YouTube">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.9 4.8 12 4.8 12 4.8s-5.9 0-7.6.4a2.8 2.8 0 0 0-2 2A29 29 0 0 0 2 12a29 29 0 0 0 .4 4.8 2.8 2.8 0 0 0 2 2c1.7.4 7.6.4 7.6.4s5.9 0 7.6-.4a2.8 2.8 0 0 0 2-2A29 29 0 0 0 22 12a29 29 0 0 0-.4-4.8ZM10 15.2V8.8L15.5 12 10 15.2Z"></path></svg>
+              </button>
+              <button class="social" type="button" aria-label="GitHub">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 0 0-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.4-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.6.3-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5A3.9 3.9 0 0 1 6.6 7c-.1-.3-.5-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .6 1.4.2 2.4.1 2.7a3.9 3.9 0 0 1 1 2.7c0 3.9-2.3 4.7-4.5 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0 0 12 2Z"></path></svg>
+              </button>
+              <button class="social" type="button" aria-label="Instagram">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><path d="M17.5 6.5h.01"></path></svg>
+              </button>
+            </div>
+            <a class="contact-btn" href="#components">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6h16v12H4z"></path><path d="m4 7 8 6 8-6"></path></svg>
+              Escríbeme
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo">
+        <p class="demo-label">Barra de navegación</p>
+        <nav class="nav-demo" aria-label="Navegación de muestra">
+          <span class="brand-name" style="font-size:17px">jonmircha<span class="brand-dot">.</span></span>
+          <ul>
+            <li><a href="#components" aria-current="page">Inicio</a></li>
+            <li><a href="#components">Cursos</a></li>
+            <li><a href="#components">Blog</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="demo">
+        <p class="demo-label">Enlaces</p>
+        <p class="t-body">
+          Lee la <a class="link-inline" href="#components">guía de estilos</a> o vuelve al
+          <a class="link-inline" href="#overview">inicio</a>. Los enlaces dentro del texto van en azul,
+          sin subrayado hasta el hover.
+        </p>
+        <p><a class="link-title" href="#components">Un enlace que es título</a></p>
+      </div>
+
+      <div class="demo">
+        <p class="demo-label">Modal</p>
+        <div class="demo-row">
+          <button class="btn" type="button" id="open-dialog">Abrir modal</button>
+        </div>
+        <dialog id="demo-dialog" aria-labelledby="dialog-title">
+          <div class="dialog-inner">
+            <h3 id="dialog-title">¿Reservamos tu lugar?</h3>
+            <p>Te enviaremos los detalles de la próxima cohorte. Sin spam, solo lo importante.</p>
+            <div class="dialog-actions">
+              <button class="btn" type="button" id="close-dialog">Confirmar</button>
+              <button class="btn-ghost" type="button" id="cancel-dialog">Cancelar</button>
+            </div>
+          </div>
+        </dialog>
+      </div>
+    </section>
+
+    <!-- 08 · Reglas -->
+    <section class="section" id="rules" aria-labelledby="rules-title">
+      <div class="section-head">
+        <p class="section-index">08</p>
+        <h2 class="section-title" id="rules-title">Do's and Don'ts</h2>
+        <p class="section-desc">
+          Las reglas que mantienen el sistema coherente. Si una decisión no aparece aquí,
+          se resuelve con los tokens, no con el gusto del momento.
+        </p>
+      </div>
+
+      <div class="rules-grid">
+        <div class="rule-col rule-yes">
+          <h3>Sí</h3>
+          <ul class="rule-list">
+            <li><span class="rule-mark" aria-hidden="true">✓</span><span>Usa <span class="mono">primary-strong</span> como fondo de los botones con texto blanco y reserva el naranja de marca para títulos, íconos y acentos.</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✓</span><span>Mantén 20px como tamaño base del cuerpo en escritorio; nunca bajes de 16px.</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✓</span><span>Aplica 48–92px de espaciado vertical entre secciones mayores.</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✓</span><span>Usa PT Sans para cuerpo y navegación, y Raleway Black solo para títulos de nivel superior.</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✓</span><span>Combina el naranja con fondos blancos y gris claro para máximo contraste.</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✓</span><span>Usa botones de ícono circulares para enlaces sociales y acciones secundarias.</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✓</span><span>Mantén tarjetas y componentes a 0px de radio para una apariencia nítida.</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✓</span><span>Implementa los estados hover con cambios de color o subrayados, nunca con opacidad sola.</span></li>
+          </ul>
+        </div>
+        <div class="rule-col rule-no">
+          <h3>No</h3>
+          <ul class="rule-list">
+            <li><span class="rule-mark" aria-hidden="true">✕</span><span>No uses el naranja y el azul juntos en un mismo elemento interactivo; elige uno.</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✕</span><span>No uses sombras más profundas que <span class="mono">0 8px 24px</span>.</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✕</span><span>No uses grises más claros que <span class="mono">on-surface-muted</span> para texto.</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✕</span><span>No apliques tipografías serif en la jerarquía principal.</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✕</span><span>No hagas botones menores a 32px (circulares) o 40px de alto (rectangulares).</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✕</span><span>No escondas navegación crítica tras menús desplegables en móvil sin necesidad.</span></li>
+            <li><span class="rule-mark" aria-hidden="true">✕</span><span>No uses imágenes de fondo o texturas que compitan con la legibilidad.</span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p>Sistema de diseño jonmircha · v1.0 · construido con DESIGN.md</p>
+      <p><a href="DESIGN.md">DESIGN.md</a> · <a href="#overview">Volver arriba ↑</a></p>
+    </footer>
+
+  </main>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function () {
+  'use strict';
+
+  var root = document.documentElement;
+  var toggle = document.getElementById('theme-toggle');
+  var metaTheme = document.querySelector('meta[name="theme-color"]');
+  var mq = window.matchMedia('(prefers-color-scheme: dark)');
+
+  function applyTheme(theme) {
+    root.setAttribute('data-theme', theme);
+    var dark = theme === 'dark';
+    toggle.setAttribute('aria-pressed', String(dark));
+    toggle.setAttribute('aria-label', dark ? 'Activar tema claro' : 'Activar tema oscuro');
+    if (metaTheme) metaTheme.setAttribute('content', dark ? '#202B38' : '#FCFCFC');
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('jm-theme'); } catch (e) { saved = null; }
+  applyTheme(saved === 'light' || saved === 'dark' ? saved : (mq.matches ? 'dark' : 'light'));
+
+  toggle.addEventListener('click', function () {
+    var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    try { localStorage.setItem('jm-theme', next); } catch (e) {}
+    applyTheme(next);
+  });
+
+  mq.addEventListener('change', function (e) {
+    var stored = null;
+    try { stored = localStorage.getItem('jm-theme'); } catch (err) {}
+    if (!stored) applyTheme(e.matches ? 'dark' : 'light');
+  });
+
+  /* menú móvil */
+  var menuBtn = document.getElementById('menu-toggle');
+  var mobileNav = document.getElementById('mobile-nav');
+
+  function setMenu(open) {
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Cerrar menú de secciones' : 'Abrir menú de secciones');
+    mobileNav.hidden = !open;
+  }
+
+  menuBtn.addEventListener('click', function () {
+    setMenu(menuBtn.getAttribute('aria-expanded') !== 'true');
+  });
+  mobileNav.addEventListener('click', function (e) {
+    if (e.target.closest('a')) setMenu(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !mobileNav.hidden) {
+      setMenu(false);
+      menuBtn.focus();
+    }
+  });
+
+  /* sección activa en la barra lateral */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('#section-nav a'));
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        navLinks.forEach(function (link) {
+          if (link.getAttribute('data-section') === entry.target.id) {
+            link.setAttribute('aria-current', 'true');
+          } else {
+            link.removeAttribute('aria-current');
+          }
+        });
+      });
+    }, { rootMargin: '-15% 0px -75% 0px', threshold: 0 });
+    navLinks.forEach(function (link) {
+      var section = document.getElementById(link.getAttribute('data-section'));
+      if (section) observer.observe(section);
+    });
+  }
+
+  /* copiar tokens */
+  var toast = document.getElementById('toast');
+  var toastTimer;
+
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('is-visible');
+    window.clearTimeout(toastTimer);
+    toastTimer = window.setTimeout(function () {
+      toast.classList.remove('is-visible');
+    }, 2200);
+  }
+
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var area = document.createElement('textarea');
+      area.value = text;
+      area.setAttribute('readonly', '');
+      area.style.position = 'fixed';
+      area.style.top = '-1000px';
+      document.body.appendChild(area);
+      area.select();
+      try {
+        document.execCommand('copy') ? resolve() : reject();
+      } catch (err) {
+        reject(err);
+      }
+      document.body.removeChild(area);
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    var target = e.target.closest('[data-copy]');
+    if (!target) return;
+    var value = target.getAttribute('data-copy');
+    copyText(value).then(function () {
+      showToast('Copiado: ' + value);
+    }).catch(function () {
+      showToast('No se pudo copiar. Valor: ' + value);
+    });
+  });
+
+  /* modal */
+  var dialog = document.getElementById('demo-dialog');
+  var openBtn = document.getElementById('open-dialog');
+  var closeBtn = document.getElementById('close-dialog');
+  var cancelBtn = document.getElementById('cancel-dialog');
+
+  if (dialog && typeof dialog.showModal === 'function') {
+    openBtn.addEventListener('click', function () { dialog.showModal(); });
+    closeBtn.addEventListener('click', function () { dialog.close(); });
+    cancelBtn.addEventListener('click', function () { dialog.close(); });
+    dialog.addEventListener('click', function (e) {
+      if (e.target === dialog) dialog.close();
+    });
+  } else if (openBtn) {
+    openBtn.hidden = true;
+  }
+})();
+</script>
+</body>
+</html>
