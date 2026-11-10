@@ -317,8 +317,8 @@ strong{font-weight:700}
   text-wrap:balance;
 }
 .hero-role{
-  font:700 18px/26px var(--f-sans);
-  color:var(--fg);
+  font:700 19px/26px var(--f-sans);
+  color:var(--accent);
   text-wrap:pretty;
 }
 .hero-lead{
