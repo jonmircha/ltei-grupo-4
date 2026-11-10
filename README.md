@@ -1,19 +1,30 @@
 # Landing CV · jonmircha
 
-Landing de una sola página con la información profesional de Jonathan MirCha (jonmircha), construida con HTML, CSS y JavaScript vanilla.
+**Autor:** Jonathan MirCha (jonmircha)
 
-El contenido y la arquitectura salen de [`CV.md`](CV.md); la identidad visual —colores, tipografía, espaciado, formas y componentes— sale de [`DESIGN.md`](DESIGN.md) y de los recursos del proyecto.
+Este repositorio reúne la landing del CV de Jonathan MirCha y la referencia visual de su sistema de diseño. La landing es una página adaptable a móvil, tableta y escritorio, construida con HTML, CSS y JavaScript sin librerías externas: el contenido y la arquitectura salen de [`CV.md`](https://github.com/jonmircha/ltei-grupo-4/blob/main/CV.md), y la identidad visual —colores, tipografía, espaciado, formas y componentes— sale de [`DESIGN.md`](https://github.com/jonmircha/ltei-grupo-4/blob/main/DESIGN.md). Incluye tema claro y oscuro, navegación móvil, estilos de impresión y criterios de accesibilidad AA.
 
-## Archivos
+## Páginas publicadas
 
-- [`index.html`](index.html) — la landing.
-- [`assets/css/cv.css`](assets/css/cv.css) — estilos, temas claro/oscuro, responsive e impresión.
-- [`assets/js/cv.js`](assets/js/cv.js) — tema, menú móvil y sección activa.
+- [Landing del CV](https://jonmircha.github.io/ltei-grupo-4/)
+- [Sistema de diseño](https://jonmircha.github.io/ltei-grupo-4/design.html)
+
+## Documentos
+
+- [CV.md](https://github.com/jonmircha/ltei-grupo-4/blob/main/CV.md)
+- [DESIGN.md](https://github.com/jonmircha/ltei-grupo-4/blob/main/DESIGN.md)
+- [Arquitectura del CV (PDF)](https://jonmircha.github.io/ltei-grupo-4/assets/pdf/arquitectura-cv.pdf)
+- [Sistema de diseño (PDF)](https://jonmircha.github.io/ltei-grupo-4/assets/pdf/design.pdf)
+
+## Contenido del repositorio
+
+- [`index.html`](index.html) — landing del CV.
 - [`design.html`](design.html) — referencia visual del sistema de diseño.
-- [`CV.md`](CV.md) — contenido y arquitectura del CV.
-- [`DESIGN.md`](DESIGN.md) — tokens y reglas del sistema de diseño.
+- [`assets/css/cv.css`](assets/css/cv.css) — estilos, temas, responsive e impresión.
+- [`assets/js/cv.js`](assets/js/cv.js) — tema, menú móvil y sección activa.
+- [`assets/pdf/`](assets/pdf) — documentos PDF del proyecto.
 
-## Cómo verlo
+## Cómo verlo localmente
 
 Abre `index.html` directamente en el navegador o levanta un servidor local:
 
